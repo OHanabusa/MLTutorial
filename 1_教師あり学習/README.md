@@ -3,11 +3,10 @@
 
 # 教師あり学習の理論
 ## ニューラルネットワークの構造
-<object data="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/files/14504751/nn.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="http://yoursite.com/the.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+<p align="center">
+  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/34174a6b-9629-46f9-874c-8fd25867b128">
+</p>
+
 ニューラルネットワークは入力層，出力層，そしてその間にある複数の隠れ層から構成される．図に示すように，入力層には入力ベクトル，入力ベクトルから全結合された隠れ層には隠れ層ベクトル，隠れ層ベクトルから全結合された出力層には出力層ベクトルが各層のノードの情報となる．
 入力層には入力ベクトル  $x$  の次元数のノードが存在し，各要素の実数を保持する．
 隠れ層や出力層の各層には，複数のノードが存在する．このとき，第 $l$ 層の $i$ 番目のノードを $h_i^{(l)}$ と表記する．
@@ -24,9 +23,6 @@ $$
 この際の重み行列 $W^{(l)}$ やバイアスベクトル $b^{(l)}$ がニューラルネットワークの学習パラメータとなる．また，第 $l$ 層目の重み行列 $W^{(l)}$ とバイアスベクトル $b^{(l)}$ の初期値は，一般的に，第 $l-1$ 層目のノード数 $d$ に対して， $\left(-\frac{1}{\sqrt{d}}, \frac{1}{\sqrt{d}}\right)$ の範囲でランダムに設定される．
 
 まず，教師あり学習では，入力データとその正解のラベルが
-<p align="center">
-  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/34174a6b-9629-46f9-874c-8fd25867b128" width="75%">
-</p>
 ニューラルネットワークを用いた教師あり学習における学習の手順は以下の通りである．
 1. 順伝播（Forward Propagation）：ニューラルネットワークにおいて情報を入力した際，入力層から出力層へ順方向として出力が計算される．各層の出力は，入力とバイアス・重み行列と呼ばれる変数を行列計算し，活性化関数に入力することで計算される．
 2. 誤差の計算：損失関数を用いて，出力と正解の誤差が計算される．また，損失関数は学習モデルの性能を評価するための関数でもある．
