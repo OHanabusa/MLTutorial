@@ -11,7 +11,7 @@
 
 $$
 \begin{align}
-  h_i^{(l)} &= f^{(l)}(I^{(l)}_i)\eql{nn} \\
+  h_i^{(l)} &= f^{(l)}(I^{(l)}_i)\\
   I^{(l)}_i &= \sum_j W_{ij}^{(l)} h_j^{(l-1)} + b_i^{(l)}
 \end{align}
 $$
