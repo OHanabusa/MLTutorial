@@ -3,7 +3,11 @@
 
 # 教師あり学習の理論
 ## ニューラルネットワークの構造
-
+<object data="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/files/14504751/nn.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="http://yoursite.com/the.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 ニューラルネットワークは入力層，出力層，そしてその間にある複数の隠れ層から構成される．図に示すように，入力層には入力ベクトル，入力ベクトルから全結合された隠れ層には隠れ層ベクトル，隠れ層ベクトルから全結合された出力層には出力層ベクトルが各層のノードの情報となる．
 入力層には入力ベクトル  $x$  の次元数のノードが存在し，各要素の実数を保持する．
 隠れ層や出力層の各層には，複数のノードが存在する．このとき，第 $l$ 層の $i$ 番目のノードを $h_i^{(l)}$ と表記する．
