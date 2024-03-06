@@ -11,9 +11,8 @@
 
 $$
 \begin{align}
-    h_i^{(l)} &= f^{(l)}(I^l_i) \\
+    h_i^{(l)}&=f^{(l)}(I^l_i) \\
     I^l_i&=\sum_j W_{ij}^l h_j^{l-1}+b_i^l
-    I^{(l)}_i&=\sum_j 
 \end{align}
 $$
 
