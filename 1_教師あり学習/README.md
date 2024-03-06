@@ -21,7 +21,7 @@ $$
 
 まず，教師あり学習では，入力データとその正解のラベルが
 <p align="center">
-  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/files/14504751/nn.pdf" width="75%">
+  <pdf src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/files/14504751/nn.pdf" width="75%">
 </p>
 ニューラルネットワークを用いた教師あり学習における学習の手順は以下の通りである．
 1. 順伝播（Forward Propagation）：ニューラルネットワークにおいて情報を入力した際，入力層から出力層へ順方向として出力が計算される．各層の出力は，入力とバイアス・重み行列と呼ばれる変数を行列計算し，活性化関数に入力することで計算される．
