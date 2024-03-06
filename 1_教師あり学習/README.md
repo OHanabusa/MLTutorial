@@ -45,7 +45,7 @@ $$
 $$
 
 <p align="center">
-  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/652cbb6d-ad5b-41b2-ba7e-4edffd02d8db">
+  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/652cbb6d-ad5b-41b2-ba7e-4edffd02d8db" width="75%">
 </p>
 ここで，$\alpha$はLeaky ReLUの傾きを示し，一般的に0.01とされる．これらの関数をプロットした様子を\fref{activation}に示す．図に示すように，tanhは出力が-1から1の範囲に限定されることが分かる．また，$x=0$付近で勾配が大きいため学習効率が高いが，$x=0$から離れた領域では勾配がゼロになるという特徴がある．Leaky ReLUは$x<0$において出力をゼロとするReLU関数の変種である．そのため，$x<0$領域において微小な傾きを持ち，勾配がゼロにならないという特徴がある．
 
