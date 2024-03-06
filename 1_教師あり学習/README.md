@@ -50,6 +50,9 @@ $$
 
 ## 補足資料
 [英の卒論](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/blob/33ce72255cbbb695ec96588a9e1aa9ab11727390/%E5%8D%92%E6%A5%AD%E8%AB%96%E6%96%87_%E8%8B%B1%E9%9F%B3.pdf)
+
 [活性化関数](https://nisshingeppo.com/ai/activation-functions-list/)
+
 [誤差逆伝搬法](https://qiita.com/43x2/items/50b55623c890564f1893#%E4%B8%80%E8%88%AC%E5%8C%96)
+
 [Cross entropy loss](https://qiita.com/kenta1984/items/59a9ef1788e6934fd962)
