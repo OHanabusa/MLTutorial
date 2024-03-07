@@ -80,6 +80,7 @@ $$
 第$l$層のバイアスと重みの偏微分は一般的に以下の式で定義できる．
 
 $$
+\require{physics} \pdv{f}{x}
 \begin{align}
   \require{physics} \pdv{E}{\boldsymbol h^{(l)}} 
       &=  
