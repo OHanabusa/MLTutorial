@@ -26,8 +26,8 @@
 
 $$
 \begin{align}
-    h_i^{(l)}&=f^{(l)}I_i^{(l)} \\
-    I_i^{(l)}&=\sum_j W_{ij}^{(l)} h_j^{(l-1)}+b_i^{(l)}
+    h_i^{(l)}&=f^{(l)}I_i^{(l)} \tag{1} \\
+    I_i^{(l)}&=\sum_j W_{ij}^{(l)} h_j^{(l-1)}+b_i^{(l)} \tag{2}
 \end{align}
 $$
 
@@ -38,7 +38,7 @@ $$
   \boldsymbol h^{(l)} =
   f\left(
   \boldsymbol {W}^{(l)}  \boldsymbol {h}^{(l-1)} + \boldsymbol {b}^{(l)}
-  \right)
+  \right) \tag{3}
 \end{equation}
 $$
 
@@ -90,24 +90,24 @@ $$
   \frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
           \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
   \frac {\partial E}{\partial \boldsymbol b^{(l+1)}} &(\rm otherwise)
-      \end{cases}\tag{1} \\
+      \end{cases}\tag{4} \\
   \frac {\partial E}{\partial \boldsymbol b^{(l)}} 
       &= 
   \frac {\partial E}{\partial \boldsymbol h^{(l)}} \circ 
-  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{2}\\
+  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5}\\
   \frac {\partial E}{\partial \boldsymbol W^{(l)}}
       &=  \boldsymbol h ^{(l-1)} \cdot \left(
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{3}    
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{5}    
 \end{align}
 $$
 
-ここで， $\circ$ は同じ要素の積で計算されるアダマール積である．
+ここで， $\circ$ は同じ要素の積で計算されるアダマール積である． $\tag{2}$ 
 これを用いて，重み・バイアスのパラメータを以下の式で更新する．
 
 $$
 \begin{align}
-  \boldsymbol {b}^{(l)} &\leftarrow \boldsymbol {b}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {b}^{(l)}}\\
-  \boldsymbol {W}^{(l)} &\leftarrow \boldsymbol {W}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {W}^{(l)}}
+  \boldsymbol {b}^{(l)} &\leftarrow \boldsymbol {b}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {b}^{(l)}} \tag{6}\\
+  \boldsymbol {W}^{(l)} &\leftarrow \boldsymbol {W}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {W}^{(l)}} \tag{7}
 \end{align}
 $$
 
