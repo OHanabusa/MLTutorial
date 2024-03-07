@@ -82,7 +82,7 @@ $$
 $$
 \begin{align}
     
-equire{physics} \pdv{E}{\boldsymbol h^{(l)}} 
+\require{physics} \pdv{E}{\boldsymbol h^{(l)}} 
     &=  
     \begin{cases}
         
