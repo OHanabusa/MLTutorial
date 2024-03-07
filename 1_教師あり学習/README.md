@@ -80,22 +80,18 @@ $$
 第 $l$ 層のバイアスと重みの偏微分は一般的に以下の式で定義できる．
 
 $$
-\require{physics} \pdv{f}{x}
-$$
-
-$$
 \begin{align}
   \frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
           \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
-  \require{physics} \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
+  \frac {\partial E}{\partial \boldsymbol b^{(l+1)}} &(\rm otherwise)
       \end{cases}\tag{1} \\
-  \require{physics} \pdv{E}{\boldsymbol b^{(l)}} 
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} 
       &= 
-  \require{physics} \pdv{E}{\boldsymbol h^{(l)}} \circ 
-  \require{physics} \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\tag{2}\\
-  \require{physics} \pdv{E}{\boldsymbol W^{(l)}}
+  \frac {\partial E}{\partial \boldsymbol h^{(l)}} \circ 
+  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{2}\\
+  \frac {\partial E}{\partial \boldsymbol W^{(l)}}
       &=  \boldsymbol h ^{(l-1)} \cdot \left(
-  \require{physics} \pdv{E}{\boldsymbol b^{(l)}} \right)^T\tag{3}    
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{3}    
 \end{align}
 $$
 
