@@ -97,11 +97,12 @@ $$
   \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5} \\
   \frac {\partial E}{\partial \boldsymbol W^{(l)}}
       &=  \boldsymbol h ^{(l-1)} \cdot \left(
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{5} 
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{6} 
 \end{align}
 $$
 
-ここで， $\circ$ は同じ要素の積で計算されるアダマール積である． \ref{eh}
+ここで， $\circ$ は同じ要素の積で計算されるアダマール積である． $ \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}$ 
+式（4）～（6）は出力層から順番に式（4），式（5）式（6）と繰り返し計算することですべての層の勾配が得られることが分かる．出力層から入力層に向けて誤差を伝搬させていることから誤差逆伝搬法と呼ばれている．
 これを用いて，重み・バイアスのパラメータを以下の式で更新する．
 
 $$
