@@ -2,11 +2,11 @@
 ここでは，[このサイト](https://atmarkit.itmedia.co.jp/ait/articles/2005/21/news017.html)で紹介されていたニューラルネットワークを用いた手書き文字のクラス分類を行う．説明でわからないところがあれば，サイトを参照してみてください．
 
 ## プログラムの準備
-まず初めにhandwriting.pyとrequirement.txtをvscodeやほかのpython環境にダウンロードしてください．
+1. まず初めにhandwriting.pyとrequirement.txtをvscodeやほかのpython環境にダウンロードしてください．
 その後，ターミナルで`pip install -r requirements.txt`と入力することで必要なモジュールをダウンロードします．
 この時，`pip install -r ???`の???部分はダウンロードしたrequirements.txtのパスを入力して下さい．
 
-`python handwriting.py`で実行できると思います．プログラムと以下の説明を比較しながら理解してください．
+2. `python handwriting.py`で実行できると思います．プログラムと以下の説明を比較しながら理解してください．
 
 ## プロクラムの説明
 MNISTデータベースには、下に示したような手書きの数字（と対応する正解ラベル）が訓練データとして6万個、テストデータとして1万個格納されています。この膨大な数のデータを使用して、ニューラルネットワークを用いて手書きの数字を認識してみようというのが目標です。
