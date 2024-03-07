@@ -1,4 +1,5 @@
 import torch
+import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
@@ -36,7 +37,7 @@ folder_dir = os.path.dirname(os.path.abspath(__file__))
 dr = folder_dir + "/"+ folder_name + "_results"
 os.makedirs(dr, exist_ok=True)
 
-#
+#MNISTデータの取得
 BATCH_SIZE = 20
 transform = transforms.Compose([transforms.ToTensor(),
                                 transforms.Normalize((0.0,), (1.0,))])
@@ -46,36 +47,42 @@ trainloader = torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, shuf
 
 test_set = torchvision.datasets.MNIST(root='./data', train=False,transform=transform, download=True)
 testloader = torch.utils.data.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)
-# 入力データとラベルの分離
+
+#ニューラルネットワークの定義
 class Net(torch.nn.Module):
     def __init__(self, INPUT_FEATURES, HIDDEN, OUTPUT_FEATURES):
         super().__init__()
-        self.fc1 = torch.nn.Linear(INPUT_FEATURES, HIDDEN)
+        self.fc1 = torch.nn.Linear(INPUT_FEATURES, HIDDEN)#linearは全結合
         self.fc2 = torch.nn.Linear(HIDDEN, OUTPUT_FEATURES)
         # self.softmax = torch.nn.Softmax(dim=1)
     def forward(self, x):
         x = self.fc1(x)
-        x = torch.nn.functional.relu(x)
-        x = self.fc2(x)
-        # x = self.softmax(x)
+        x = torch.nn.functional.relu(x)#隠れ層の出力：前の層から全結合した値を活性化関数ReLUに入力し計算する
+        x = self.fc2(x)#出力層は全結合のみ
+        # x = self.softmax(x)#出力層の活性化関数：なくてもよい
         return x
+
+#ニューラルネットワークの各層のノード数
 INPUT_FEATURES = 28 * 28
 HIDDEN = 100
 OUTPUT_FEATURES = 10
 
 net = Net(INPUT_FEATURES, HIDDEN, OUTPUT_FEATURES)
 
-import torch.optim as optim
-
 criterion = torch.nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
-
+#通常のSGD
+# optimizer = optim.SGD(net.parameters(), lr=0.001)
+#SGD+慣性項
+# optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+#Adam
+optimizer = optim.Adam(net.parameters(), lr=0.001)
 
 EPOCHS = 10
 train_loss_list=[]
 test_loss_list=[]
 test_accuracy_list=[]
 for epoch in range(1, EPOCHS + 1):
+    #学習フェーズ
     running_loss = 0.0
     for count, item in enumerate(trainloader, 1):
         inputs, labels = item
@@ -94,27 +101,29 @@ for epoch in range(1, EPOCHS + 1):
                 train_loss_list.append(running_loss / 500.0)
             running_loss = 0.0
 
-# print('Finished')
+    #現段階での評価
     correct = 0
     total = 0
+    test_loss = 0
+    test_count=0
 
-    with torch.no_grad():
+    with torch.no_grad():#勾配が計算されないモード
         for data in testloader:
             inputs, labels = data
             inputs = inputs.reshape(-1, 28 * 28)
             outputs = net(inputs)
             loss = criterion(outputs, labels)
+            test_loss += loss.item()
             _, predicted = torch.max(outputs, 1)
             total += len(outputs)
             correct += (predicted == labels).sum().item()
-    
-    test_loss_list.append(loss.detach().numpy())
+            test_count+=1
+    test_loss_list.append(test_loss/test_count)
 
-    print(f'correct: {correct} / {total}, accuracy: {correct / total}%')
+    print(f'test = accuracy: {correct / total}%, loss: {test_loss/test_count:1.3f}')
     test_accuracy_list.append(correct / total)
 
-# 結果の出力と描画
-# print("test_acc", test_acc_list)
+# 結果の描画
 fig = plt.figure()
 plt.plot(np.arange(1, EPOCHS+1), train_loss_list, label='train_loss')
 plt.plot(np.arange(1, EPOCHS+1), test_loss_list, label='test_loss')
