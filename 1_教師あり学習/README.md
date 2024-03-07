@@ -60,7 +60,7 @@ $$
 
 ここで， $\alpha$ はLeaky ReLUの傾きを示し，一般的に0.01とされる．これらの関数をプロットした様子を下図に示す．図に示すように，tanhは出力が-1から1の範囲に限定されることが分かる．また， $x=0$ 付近で勾配が大きいため学習効率が高いが， $x=0$ から離れた領域では勾配がゼロになるという特徴がある．Leaky ReLUは $x<0$ において出力をゼロとするReLU関数の変種である．そのため， $x<0$ 領域において微小な傾きを持ち，勾配がゼロにならないという特徴がある．
 <p align="center">
-  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/652cbb6d-ad5b-41b2-ba7e-4edffd02d8db" width="75%">
+  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/652cbb6d-ad5b-41b2-ba7e-4edffd02d8db" width="60%">
 </p>
 
 その他の活性化関数は参考資料のサイトまたは各自で調べてみてください．活性化関数は出力の範囲を定めるだけでなく，活性化関数の勾配が学習を行う際にとても重要な要素となっているのでいろいろ試してみてください．
@@ -72,19 +72,24 @@ $$
 E =  \sum_i \frac{1}{2}({y}_i - {t}_i)^2
 $$
 
-ここで， $y_i$ は $i$ 番目の出力， $t_i$ が正解データである．これは値の予測や線形回帰問題に使われる関数です．
-
-手書き文字の認識などのクラス分類には，交差エントロピー誤差関数(cross entropy loss)が用いられることが多い．その関数を以下に示す．
-
-$$
-\begin{align}
-  E = -\sum_i t_i \text{log} y_i
-\end{align}
-$$
+ここで， $y_i$ は $i$ 番目の出力， $t_i$ が正解データである．これは値の予測や線形回帰問題に使われる関数で，各出力が正解データに近いほど誤差は小さくなる．
 
 ## 誤差逆伝搬法
+誤差逆伝播法は，ニューラルネットワークの学習パラメータを最適化するために誤差を出力層から入力層に向けて逆方向に伝播させながら各層の重みとバイアスを更新するアルゴリズムである．
 
-
+第$l$層のバイアスと重みの偏微分は一般的に以下の式で定義できる．
+\begin{align}
+    \pdv{E}{\boldsymbol h^{(l)}} 
+    &=  
+    \begin{cases}
+        \pdv{E}{\boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
+        \left(\boldsymbol W ^{(l+1)}\right)^T \cdot \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
+    \end{cases}\eql{ehl} \\
+    \pdv{E}{\boldsymbol b^{(l)}} 
+    &= \pdv{E}{\boldsymbol h^{(l)}} \circ \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\eql{ebl}\\
+    \pdv{E}{\boldsymbol W^{(l)}}
+    &=  \boldsymbol h ^{(l-1)} \cdot \left(\pdv{E}{\boldsymbol b^{(l)}} \right)^T\eql{ewl}    
+\end{align}
 ## 補足資料
 [英の卒論](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/blob/33ce72255cbbb695ec96588a9e1aa9ab11727390/%E5%8D%92%E6%A5%AD%E8%AB%96%E6%96%87_%E8%8B%B1%E9%9F%B3.pdf)
 
