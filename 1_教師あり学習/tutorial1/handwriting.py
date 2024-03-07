@@ -3,6 +3,7 @@ import torchvision
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 import os
+import numpy as np
 
 #グラフの設定
 plt.rcParams['text.usetex'] = False
@@ -115,15 +116,15 @@ for epoch in range(1, EPOCHS + 1):
 # 結果の出力と描画
 # print("test_acc", test_acc_list)
 fig = plt.figure()
-plt.plot(train_loss_list, label='train_loss')
-plt.plot(test_loss_list, label='test_loss')
+plt.plot(np.arange(1, EPOCHS+1), train_loss_list, label='train_loss')
+plt.plot(np.arange(1, EPOCHS+1), test_loss_list, label='test_loss')
 plt.xlabel('epoch')
 plt.ylabel("loss")
 plt.legend()
 fig.savefig(dr+"/loss.png")
 
 fig=plt.figure()
-plt.plot(test_accuracy_list)
+plt.plot(np.arange(1, EPOCHS+1), test_accuracy_list)
 plt.ylabel("accuracy")
 plt.xlabel('epoch')
 fig.savefig(dr+"/accuracy.png")
