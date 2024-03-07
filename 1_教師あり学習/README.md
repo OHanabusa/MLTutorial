@@ -99,8 +99,8 @@ $$
 
 $$
 \begin{align}
-  \bm{b}^{(l)} &\leftarrow \bm{b}^{(l)} - \eta \frac{\partial E}{\partial \bm{b}^{(l)}}\\
-  \bm{W}^{(l)} &\leftarrow \bm{W}^{(l)} - \eta \frac{\partial E}{\partial \bm{W}^{(l)}}
+  \boldsymbol {b}^{(l)} &\leftarrow \boldsymbol {b}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {b}^{(l)}}\\
+  \boldsymbol {W}^{(l)} &\leftarrow \boldsymbol {W}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {W}^{(l)}}
 \end{align}
 $$
 
