@@ -24,6 +24,21 @@ test_set = torchvision.datasets.MNIST(root='./data', train=False,transform=trans
 testloader = torch.utils.data.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)
 ```
 
+```python
+class Net(torch.nn.Module):
+    def __init__(self, INPUT_FEATURES, HIDDEN, OUTPUT_FEATURES):
+        super().__init__()
+        self.fc1 = torch.nn.Linear(INPUT_FEATURES, HIDDEN)
+        self.fc2 = torch.nn.Linear(HIDDEN, OUTPUT_FEATURES)
+        # self.softmax = torch.nn.Softmax(dim=1)
+    def forward(self, x):
+        x = self.fc1(x)
+        x = torch.nn.functional.relu(x)
+        x = self.fc2(x)
+        # x = self.softmax(x)
+        return x
+```
+
 一枚あたり28x28ピクセルの画像を使用するので、サイズが784(=28x28)の一次元配列に変換します。
 
 ![accuracy](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/a7633edd-fed3-4a16-8f57-ecdcc39a7abe)
