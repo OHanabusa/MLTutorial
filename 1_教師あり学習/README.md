@@ -100,6 +100,7 @@ $$
   \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{3}    
 \end{align}
 $$
+
 ここで， $\circ$ は同じ要素の積で計算されるアダマール積である．
 これを用いて，重み・バイアスのパラメータを以下の式で更新する．
 
