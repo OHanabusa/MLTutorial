@@ -124,3 +124,5 @@ $$
 [誤差逆伝搬法](https://qiita.com/43x2/items/50b55623c890564f1893#%E4%B8%80%E8%88%AC%E5%8C%96)
 
 [最適化法](https://www.tech-teacher.jp/blog/algorithm-machine-learning/)
+
+[東工大の資料](http://www.iee.e.titech.ac.jp/~nakatalab/text/lib/pdf/kougisiryou/ml/ML5.pdf)
