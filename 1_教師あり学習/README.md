@@ -89,16 +89,16 @@ $$
 equire{physics} \pdv{E}{\boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
         \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
 equire{physics} \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
-    \end{cases}\eql{ehl} \\
+    \end{cases}\tag{1} \\
     
 equire{physics} \pdv{E}{\boldsymbol b^{(l)}} 
     &= 
 equire{physics} \pdv{E}{\boldsymbol h^{(l)}} \circ 
-equire{physics} \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\eql{ebl}\\
+equire{physics} \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\tag{2}\\
     
 equire{physics} \pdv{E}{\boldsymbol W^{(l)}}
     &=  \boldsymbol h ^{(l-1)} \cdot \left(
-equire{physics} \pdv{E}{\boldsymbol b^{(l)}} \right)^T\eql{ewl}    
+equire{physics} \pdv{E}{\boldsymbol b^{(l)}} \right)^T\tag{3}    
 \end{align}
 $$
 
