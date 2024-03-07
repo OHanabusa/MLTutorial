@@ -90,18 +90,18 @@ $$
   \frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
           \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
   \frac {\partial E}{\partial \boldsymbol b^{(l+1)}} &(\rm otherwise)
-      \end{cases}\tag{4} \\
+      \end{cases}\tag{4} \label{eh}\\
   \frac {\partial E}{\partial \boldsymbol b^{(l)}} 
       &= 
   \frac {\partial E}{\partial \boldsymbol h^{(l)}} \circ 
-  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5}\\
+  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5} \label{eb}\\
   \frac {\partial E}{\partial \boldsymbol W^{(l)}}
       &=  \boldsymbol h ^{(l-1)} \cdot \left(
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{5}    
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{5} \label{ew}   
 \end{align}
 $$
 
-ここで， $\circ$ は同じ要素の積で計算されるアダマール積である． \tag{2}
+ここで， $\circ$ は同じ要素の積で計算されるアダマール積である． \reff{eh}{ew}
 これを用いて，重み・バイアスのパラメータを以下の式で更新する．
 
 $$
