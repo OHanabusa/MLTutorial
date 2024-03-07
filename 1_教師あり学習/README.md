@@ -81,20 +81,20 @@ $$
 
 $$
 \begin{align}
-\require{physics} \pdv{E}{\boldsymbol h^{(l)}} 
-    &=  
-    \begin{cases}
-\require{physics} \pdv{E}{\boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
-        \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
-\require{physics} \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
-    \end{cases}\tag{1} \\
-\require{physics} \pdv{E}{\boldsymbol b^{(l)}} 
-    &= 
-\require{physics} \pdv{E}{\boldsymbol h^{(l)}} \circ 
-\require{physics} \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\tag{2}\\
-\require{physics} \pdv{E}{\boldsymbol W^{(l)}}
-    &=  \boldsymbol h ^{(l-1)} \cdot \left(
-\require{physics} \pdv{E}{\boldsymbol b^{(l)}} \right)^T\tag{3}    
+  \require{physics} \pdv{E}{\boldsymbol h^{(l)}} 
+      &=  
+      \begin{cases}
+  \require{physics} \pdv{E}{\boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
+          \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
+  \require{physics} \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
+      \end{cases}\tag{1} \\
+  \require{physics} \pdv{E}{\boldsymbol b^{(l)}} 
+      &= 
+  \require{physics} \pdv{E}{\boldsymbol h^{(l)}} \circ 
+  \require{physics} \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\tag{2}\\
+  \require{physics} \pdv{E}{\boldsymbol W^{(l)}}
+      &=  \boldsymbol h ^{(l-1)} \cdot \left(
+  \require{physics} \pdv{E}{\boldsymbol b^{(l)}} \right)^T\tag{3}    
 \end{align}
 $$
 
