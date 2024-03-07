@@ -34,7 +34,7 @@ $$
 \begin{equation}
   \boldsymbol h^{(l)} =
   f\left(
-  \boldsymbol {W}^{(l)} \cdot \boldsymbol {h}^{(l-1)} + \boldsymbol {b}^{(l)}
+  \boldsymbol {W}^{(l)}  \boldsymbol {h}^{(l-1)} + \boldsymbol {b}^{(l)}
   \right)
 \end{equation}
 $$
