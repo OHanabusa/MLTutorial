@@ -80,18 +80,25 @@ $$
 第$l$層のバイアスと重みの偏微分は一般的に以下の式で定義できる．
 
 $$
-\require{physics}
 \begin{align}
-    \pdv{E}{\boldsymbol h^{(l)}} 
+    
+equire{physics} \pdv{E}{\boldsymbol h^{(l)}} 
     &=  
     \begin{cases}
-        \pdv{E}{\boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
-        \left(\boldsymbol W ^{(l+1)}\right)^T \cdot \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
+        
+equire{physics} \pdv{E}{\boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
+        \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
+equire{physics} \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
     \end{cases}\eql{ehl} \\
-    \pdv{E}{\boldsymbol b^{(l)}} 
-    &= \pdv{E}{\boldsymbol h^{(l)}} \circ \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\eql{ebl}\\
-    \pdv{E}{\boldsymbol W^{(l)}}
-    &=  \boldsymbol h ^{(l-1)} \cdot \left(\pdv{E}{\boldsymbol b^{(l)}} \right)^T\eql{ewl}    
+    
+equire{physics} \pdv{E}{\boldsymbol b^{(l)}} 
+    &= 
+equire{physics} \pdv{E}{\boldsymbol h^{(l)}} \circ 
+equire{physics} \pdv{\boldsymbol h^{(l)}}{\boldsymbol I^{(l)}}\eql{ebl}\\
+    
+equire{physics} \pdv{E}{\boldsymbol W^{(l)}}
+    &=  \boldsymbol h ^{(l-1)} \cdot \left(
+equire{physics} \pdv{E}{\boldsymbol b^{(l)}} \right)^T\eql{ewl}    
 \end{align}
 $$
 
