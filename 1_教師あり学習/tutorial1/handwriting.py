@@ -42,10 +42,10 @@ BATCH_SIZE = 20
 transform = transforms.Compose([transforms.ToTensor(),
                                 transforms.Normalize((0.0,), (1.0,))])
 
-train_set = torchvision.datasets.MNIST(root='./data', train=True,transform=transform, download=True)
+train_set = torchvision.datasets.MNIST(root='./', train=True,transform=transform, download=True)
 trainloader = torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)
 
-test_set = torchvision.datasets.MNIST(root='./data', train=False,transform=transform, download=True)
+test_set = torchvision.datasets.MNIST(root='./', train=False,transform=transform, download=True)
 testloader = torch.utils.data.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)
 
 #ニューラルネットワークの定義
