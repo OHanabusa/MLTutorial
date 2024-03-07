@@ -90,14 +90,14 @@ $$
   \frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
           \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
   \frac {\partial E}{\partial \boldsymbol b^{(l+1)}} &(\rm otherwise)
-      \end{cases}\tag{4} \label{eh}\\
+      \end{cases}\tag{4} \\
   \frac {\partial E}{\partial \boldsymbol b^{(l)}} 
       &= 
   \frac {\partial E}{\partial \boldsymbol h^{(l)}} \circ 
-  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5} \label{eb}\\
+  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5} \\
   \frac {\partial E}{\partial \boldsymbol W^{(l)}}
       &=  \boldsymbol h ^{(l-1)} \cdot \left(
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{5} \label{ew}   
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{5} 
 \end{align}
 $$
 
