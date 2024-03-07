@@ -78,6 +78,8 @@ $$
 誤差逆伝播法は，ニューラルネットワークの学習パラメータを最適化するために誤差を出力層から入力層に向けて逆方向に伝播させながら各層の重みとバイアスを更新するアルゴリズムである．
 
 第$l$層のバイアスと重みの偏微分は一般的に以下の式で定義できる．
+
+$$
 \begin{align}
     \pdv{E}{\boldsymbol h^{(l)}} 
     &=  
@@ -90,6 +92,8 @@ $$
     \pdv{E}{\boldsymbol W^{(l)}}
     &=  \boldsymbol h ^{(l-1)} \cdot \left(\pdv{E}{\boldsymbol b^{(l)}} \right)^T\eql{ewl}    
 \end{align}
+$$
+
 ## 補足資料
 [英の卒論](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/blob/33ce72255cbbb695ec96588a9e1aa9ab11727390/%E5%8D%92%E6%A5%AD%E8%AB%96%E6%96%87_%E8%8B%B1%E9%9F%B3.pdf)
 
