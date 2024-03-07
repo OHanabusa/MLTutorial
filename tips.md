@@ -3,3 +3,5 @@
 2. 入力データは正規化されているか
 3. 
 ここでは，機械学習をうまく行うための
+
+[ModuleNotFoundErrorの対処法](https://qiita.com/MasatoKawai/items/e976729298c7d1a410e6)
