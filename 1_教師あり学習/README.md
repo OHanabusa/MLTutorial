@@ -81,6 +81,8 @@ $$
 
 $$
 \require{physics} \pdv{f}{x}
+$$
+
 \begin{align}
   \require{physics} \pdv{E}{\boldsymbol h^{(l)}} 
       &=  
