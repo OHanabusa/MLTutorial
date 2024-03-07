@@ -96,7 +96,7 @@ $$
   \frac {\partial E}{\partial \boldsymbol h^{(l)}} \circ 
   \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5} \\
   \frac {\partial E}{\partial \boldsymbol W^{(l)}}
-      &=  \boldsymbol h ^{(l-1)} \cdot \left(
+      &=  \boldsymbol h ^{(l-1)} \left(
   \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{6} 
 \end{align}
 $$
