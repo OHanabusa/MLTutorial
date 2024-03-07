@@ -1,7 +1,7 @@
 ここではニューラルネットワークを用いた教師あり学習の理論を紹介する．その後，理論とプログラムを比較しながら実際にプログラムを動かし，学習が行われる様子を体験してもらう．
 # 教師あり学習の概要
 <p align="center">
-  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/a5b3ede2-c06e-4a05-b5f8-4a8154c61148" width="50%>
+  <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/a5b3ede2-c06e-4a05-b5f8-4a8154c61148" width="50%">
 </p>
 まず，教師あり学習では，入力データとその正解のラベルが分かっている必要がある．例えば，猫と犬の画像からどちらか認識するニューラルネットワークを学習するときは，それぞれの画像に正解データとして犬または猫という情報が紐づいている必要がある．
 
