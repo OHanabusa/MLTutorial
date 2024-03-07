@@ -85,7 +85,7 @@ $$
 
 $$
 \begin{align}
-  \require{physics} \pdv{E}{\boldsymbol h^{(l)}} &=  \begin{cases} \require{physics} \pdv{E}{\boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
+  \frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
           \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
   \require{physics} \pdv{E}{\boldsymbol b^{(l+1)}} &(\rm otherwise)
       \end{cases}\tag{1} \\
