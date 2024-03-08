@@ -13,15 +13,17 @@ MNISTデータベースには、下に示したような手書きの数字（と
 
 ![image](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/09e2a68a-fbde-4237-ac96-708b36455c59)
 
+まず，手書き文字の画像は28×28のピクセルデータがそれぞれ0～255のグレースケールの値で保存されているため，読み込む際に`transform`を用いて
+
 ```python
 BATCH_SIZE = 20
 transform = transforms.Compose([transforms.ToTensor(),
                                 transforms.Normalize((0.0,), (1.0,))])
 
-train_set = torchvision.datasets.MNIST(root='./data', train=True,transform=transform, download=True)
+train_set = torchvision.datasets.MNIST(root='./', train=True,transform=transform, download=True)
 trainloader = torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)
 
-test_set = torchvision.datasets.MNIST(root='./data', train=False,transform=transform, download=True)
+test_set = torchvision.datasets.MNIST(root='./', train=False,transform=transform, download=True)
 testloader = torch.utils.data.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)
 ```
 
