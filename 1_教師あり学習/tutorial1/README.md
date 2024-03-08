@@ -47,7 +47,7 @@ class Net(torch.nn.Module):
         return x
 ```
 
-損失関数は交差エントロピー関数，最適化法はSGDとしていますが他のも試してみてください．
+損失関数は交差エントロピー関数，最適化法は学習率lr=0.001のSGDとしていますが他のも試してみてください．最適化法によって学習の成績がかなり変わります．
 
 ```python
 #損失関数の設定
@@ -59,7 +59,46 @@ optimizer = optim.SGD(net.parameters(), lr=0.001)
 
 以上がデータとニューラルネットワークの設定で，以降は学習になります．
 
+ここでは，訓練データを使って学習を行っています．`outputs`がニューラルネットワークの出力で，`loss`が損失関数の計算，`loss.backward()`で勾配の計算，`optimizer.step()`でニューラルネットワークの更新を行っています．これは，教師あり学習の理論で説明した勾配の計算とニューラルネットワークの更新を自動でやってくれています．
+
+```python
+EPOCHS = 10#データセットを何周するか
+for epoch in range(1, EPOCHS + 1):
+    #学習フェーズ
+    for count, item in enumerate(trainloader, 1):
+        inputs, labels = item
+        inputs = inputs.reshape(-1, 28 * 28)#28*28の２次元配列を１次元の配列に変換
+        optimizer.zero_grad()
+        outputs = net(inputs)#Netクラスのforward関数が使われる
+        loss = criterion(outputs, labels)
+        #ニューラルネットワークの更新
+        loss.backward()
+        optimizer.step()
+```
+
+次は，１セットの訓練データが学習し終わったタイミングでテストデータを使って現在のニューラルネットワークの成績を確認します．
+
+ここでは，ニューラルネットワークの更新は行わないため，`torch.no_grad()`で勾配計算を行わないモードに変更しています．ここでは，`predicted`でニューラルネットワークが予測した分類を取得し，`correct += (predicted == labels).sum().item()`で正解数を数えています．
+
+```python
+    with torch.no_grad():#勾配が計算されないモード
+        for data in testloader:
+            inputs, labels = data
+            inputs = inputs.reshape(-1, 28 * 28)
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            test_loss += loss.item()
+            _, predicted = torch.max(outputs, 1)#出力層の最大値を示すものをニューラルネットワークの予測した分類とする．
+            total += len(outputs)
+            correct += (predicted == labels).sum().item()
+```
+
+以上の学習と評価を`EPOCHS`回繰り返し行い，その学習の推移をグラフにプロットします．
+
+以下に，最適化法Adam，EPOCHS=30としたときの結果を示す．
 
 <p align="center">
   <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/a7633edd-fed3-4a16-8f57-ecdcc39a7abe" width="40%"><img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/9eb583f2-c84c-41a2-8339-f2e964e5588a" width="40%">
 </p>
+
+隠れ層の層の数，ノード数，活性化関数，EPOCHS，学習率，最適化法などいろんな変数を調整して精度98%を超えられるか挑戦してみてください．
