@@ -43,4 +43,3 @@ class Net(torch.nn.Module):
 <p align="center">
   <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/a7633edd-fed3-4a16-8f57-ecdcc39a7abe" width="40%"><img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/9eb583f2-c84c-41a2-8339-f2e964e5588a" width="40%">
 </p>
-![accuracy](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/a7633edd-fed3-4a16-8f57-ecdcc39a7abe)![loss](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/9eb583f2-c84c-41a2-8339-f2e964e5588a)
