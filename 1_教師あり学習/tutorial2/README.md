@@ -7,3 +7,32 @@
 `cnn_handwriting.py`をダウンロードし，実行してください．
 
 ## プログラムの説明
+
+tutorial1との違いはニューラルネットワークの構造のみなのでそこだけ説明します．
+
+```python
+class Net(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.gelu = nn.GELU()
+        self.pool = nn.MaxPool2d(2, stride=2)
+
+        self.conv1 = nn.Conv2d(1,28,3,pudding=1)
+        self.conv2 = nn.Conv2d(28,32,3)
+
+        self.fc1 = nn.Linear(32*6*6, 100)
+        self.fc2 = nn.Linear(100, 10)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.gelu(x)
+        x = self.pool(x)
+        x = self.conv2(x)
+        x = self.gelu(x)
+        x = self.pool(x)
+        x = x.reshape(x.size()[0], -1)
+        x = self.fc1(x)
+        x = self.gelu(x)
+        x = self.fc2(x)
+        return f.log_softmax(x, dim=1)
+```
