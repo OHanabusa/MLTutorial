@@ -68,10 +68,10 @@ class Net(nn.Module):
         self.gelu = nn.GELU()
         self.pool = nn.MaxPool2d(2, stride=2)
 
-        self.conv1 = nn.Conv2d(1,28,3)
+        self.conv1 = nn.Conv2d(1,28,3,pudding=1)
         self.conv2 = nn.Conv2d(28,32,3)
 
-        self.fc1 = nn.Linear(32*5*5, 100)
+        self.fc1 = nn.Linear(32*6*6, 100)
         self.fc2 = nn.Linear(100, 10)
 
     def forward(self, x):
