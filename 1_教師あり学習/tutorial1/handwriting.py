@@ -31,22 +31,21 @@ plt.rcParams["figure.dpi"] = 120  # need at least 300dpi for paper
 plt.rcParams["figure.autolayout"] = True
 
 #出力の保存先の作成
-folder_name = os.path.splitext(os.path.basename(__file__))[0]
-folder_dir = os.path.dirname(os.path.abspath(__file__))
+folder_name = os.path.splitext(os.path.basename(__file__))[0]#実行しているファイルの名前
+folder_dir = os.path.dirname(os.path.abspath(__file__))#実行しているファイルのパス（どこにあるか）
 # dr = folder_name+"/results" #+'/'+file_name
 dr = folder_dir + "/"+ folder_name + "_results"
-os.makedirs(dr, exist_ok=True)
+os.makedirs(dr, exist_ok=True)#ファイルを作成
 
 #MNISTデータの取得
-BATCH_SIZE = 20
-transform = transforms.Compose([transforms.ToTensor(),
-                                transforms.Normalize((0.0,), (1.0,))])
+BATCH_SIZE = 20#２０枚を１セットとして分ける．
+transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.0,), (1.0,))])#ピクセルデータの正規化
 
 train_set = torchvision.datasets.MNIST(root='./', train=True,transform=transform, download=True)
-trainloader = torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)
+trainloader = torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)#訓練データ
 
 test_set = torchvision.datasets.MNIST(root='./', train=False,transform=transform, download=True)
-testloader = torch.utils.data.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)
+testloader = torch.utils.data.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)#テストデータ
 
 #ニューラルネットワークの定義
 class Net(torch.nn.Module):
@@ -68,16 +67,18 @@ HIDDEN = 100
 OUTPUT_FEATURES = 10
 
 net = Net(INPUT_FEATURES, HIDDEN, OUTPUT_FEATURES)
-
+#損失関数の設定
 criterion = torch.nn.CrossEntropyLoss()
+#最適化法の設定
 #通常のSGD
-# optimizer = optim.SGD(net.parameters(), lr=0.001)
+optimizer = optim.SGD(net.parameters(), lr=0.001)
 #SGD+慣性項
 # optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 #Adam
-optimizer = optim.Adam(net.parameters(), lr=0.001)
+# optimizer = optim.Adam(net.parameters(), lr=0.001)
 
-EPOCHS = 10
+
+EPOCHS = 10#データセットを何周するか
 train_loss_list=[]
 test_loss_list=[]
 test_accuracy_list=[]
@@ -86,14 +87,15 @@ for epoch in range(1, EPOCHS + 1):
     running_loss = 0.0
     for count, item in enumerate(trainloader, 1):
         inputs, labels = item
-        inputs = inputs.reshape(-1, 28 * 28)
+        inputs = inputs.reshape(-1, 28 * 28)#28*28の２次元配列を１次元の配列に変換
 
         optimizer.zero_grad()
-        outputs = net(inputs)
+        outputs = net(inputs)#Netクラスのforward関数が使われる
         loss = criterion(outputs, labels)
+        #ニューラルネットワークの更新
         loss.backward()
         optimizer.step()
-
+        
         running_loss += loss.item()
         if count % 500 == 0:
             print(f'{epoch}, data: {count * BATCH_SIZE}, running_loss: {running_loss / 500:1.3f}')
@@ -114,7 +116,7 @@ for epoch in range(1, EPOCHS + 1):
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             test_loss += loss.item()
-            _, predicted = torch.max(outputs, 1)
+            _, predicted = torch.max(outputs, 1)#出力層の最大値を示すものをニューラルネットワークの予測した分類とする．
             total += len(outputs)
             correct += (predicted == labels).sum().item()
             test_count+=1
@@ -123,7 +125,7 @@ for epoch in range(1, EPOCHS + 1):
     print(f'test = accuracy: {correct / total}%, loss: {test_loss/test_count:1.3f}')
     test_accuracy_list.append(correct / total)
 
-# 結果の描画
+# グラフの出力
 fig = plt.figure()
 plt.plot(np.arange(1, EPOCHS+1), train_loss_list, label='train_loss')
 plt.plot(np.arange(1, EPOCHS+1), test_loss_list, label='test_loss')
