@@ -17,6 +17,7 @@
 <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/43bf8597-a4a6-49f1-a006-1f80e8b052e3" width="40%">
 
 学習回数100万回
+
 <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/0cbab061-e610-4710-b013-3d0ae8627188" width="40%">
 
 
