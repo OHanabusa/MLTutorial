@@ -8,6 +8,8 @@
 この時，`pip install -r ???`の???部分はダウンロードしたrequirements.txtのパスを入力して下さい．
 4. `python sin_pridiction.py`で実行できると思います．プログラムと以下の説明を比較しながら理解してください．
 
+## プログラムの説明
+
 学習回数１回
 
 <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/351ec4b8-d968-484d-944d-ca564b77523e" width="40%">
