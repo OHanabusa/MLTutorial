@@ -9,7 +9,9 @@
 4. `python sin_pridiction.py`で実行できると思います．プログラムと以下の説明を比較しながら理解してください．
 
 <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/351ec4b8-d968-484d-944d-ca564b77523e" width="40%">
+
 <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/43bf8597-a4a6-49f1-a006-1f80e8b052e3" width="40%">
+
 <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/0cbab061-e610-4710-b013-3d0ae8627188" width="40%">
 
 
