@@ -98,7 +98,8 @@ Test loss (avg): 0.02545464370548725, Accuracy: 0.992
 <p align="center">
   <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/4ed40275-fc65-4bc6-bc62-153b79863396" width="50%"><img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/576affb7-740c-4170-8bd9-1beefd6283f2" width="50%">
 
-
+教師あり学習のTutorialは以上です．お疲れさまでした．
+ニューラルネットワークの可視化はニューラルネットワークのパラメータを表示して学習によって変化する様子を見れるような内容になっています．これについては，他のTutorialが終わって，興味があればやってみてもいいかもしれません．
 # 参考資料
 [CNNの基本](https://zero2one.jp/learningblog/cnn-for-beginners/)
 
