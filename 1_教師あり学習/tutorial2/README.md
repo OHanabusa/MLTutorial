@@ -38,3 +38,6 @@ class Net(nn.Module):
         x = self.fc2(x)
         return f.log_softmax(x, dim=1)
 ```
+
+# 参考資料
+[CNNの基本](https://zero2one.jp/learningblog/cnn-for-beginners/)
