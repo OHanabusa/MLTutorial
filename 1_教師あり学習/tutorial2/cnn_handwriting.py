@@ -96,7 +96,27 @@ test_acc_list = []
 net = Net()
 
 optimizer = torch.optim.AdamW(params=net.parameters(), lr=0.005) # 最適化アルゴリズムを選択
+scheduler1 = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.5) #scheduler1.step()とすると，学習率が0.5倍される
 
+#初期状態での精度や損失を確認
+""" eval """
+net.eval()
+test_loss = 0
+correct = 0
+
+with torch.no_grad():
+    for data, target in data_loader_dict['test']:
+        output = net(data)
+        test_loss += f.nll_loss(output, target, reduction='sum').item()
+        pred = output.argmax(dim=1, keepdim=True)
+        correct += pred.eq(target.view_as(pred)).sum().item()
+
+test_loss /= 10000
+
+print("")
+print('Test loss (avg): {0}, Accuracy: {1}'.format(test_loss, correct / 10000), sep="")
+
+#学習過程
 epochs = 10
 for epoch in range(epochs):
     """ Training """
@@ -132,6 +152,7 @@ for epoch in range(epochs):
 
     test_loss_list.append(test_loss)
     test_acc_list.append(correct / 10000)
+    # scheduler1.step() #学習率を減少
     
 # 結果の出力と描画
 # print("test_acc", test_acc_list)
@@ -141,9 +162,11 @@ plt.plot(range(1, epochs+1), test_loss_list, label='test_loss')
 plt.xlabel('epoch')
 plt.legend()
 fig.savefig(dr+"/loss.png")
+plt.close()
 
 fig=plt.figure()
 plt.plot(range(1, epochs+1), test_acc_list)
 # plt.title('test accuracy')
 plt.xlabel('epoch')
 fig.savefig(dr+"/accuracy.png")
+plt.close()
