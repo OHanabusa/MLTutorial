@@ -37,6 +37,23 @@ W2 = np.random.normal(0, pow(hidden_size, -0.5), size=(hidden_size, output_size)
 b2 = np.zeros(output_size)  # 出力層のバイアス
 ```
 
+次に，ニューラルネットワークの順伝搬を定義する．理論で説明した行列計算をnumpyのドット積で行う．また，活性化関数は1層目のシグモイド関数のみで，出力層の活性化関数はなしとした．
+```python
+# 活性化関数(シグモイド関数)
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# 順伝搬
+def forward(x):
+    global a1
+    z1 = np.dot(x, W1) + b1  # 入力層->隠れ層
+    a1 = sigmoid(z1)  # 隠れ層の活性化
+    z2 = np.dot(a1, W2) + b2  # 隠れ層->出力層
+    return z2  # 出力層の値(=予測値)
+```
+
+
+
 ## 学習結果
 
 学習回数１回
