@@ -55,6 +55,21 @@ def forward(x):
 
 
 ## 学習結果
+学習過程を以下に示す．
+```python
+Epoch 0, Loss: 0.6472
+Epoch 100000, Loss: 0.0796
+Epoch 200000, Loss: 0.0645
+Epoch 300000, Loss: 0.0609
+Epoch 400000, Loss: 0.0522
+Epoch 500000, Loss: 0.0396
+Epoch 600000, Loss: 0.0056
+Epoch 700000, Loss: 0.0026
+Epoch 800000, Loss: 0.0013
+Epoch 900000, Loss: 0.0007
+Epoch 999999, Loss: 0.0005
+```
+各学習過程における関数近似の様子を以下に示す．
 
 学習回数１回
 
