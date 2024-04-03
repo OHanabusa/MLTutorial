@@ -28,7 +28,7 @@ y_test = np.sin(x_test)
 # ネットワーク構造の設定
 input_size = 1  # 入力層のノード数(=1次元のxの値)
 hidden_size = 10  # 隠れ層のノード数
-output_size = 1  # 出力層のノード数(=sin(x)の値)
+output_size = 1  # 出力層のノード数(=sin(x)の予測値)
 
 # 重み行列とバイアスの初期化
 W1 = np.random.normal(0, pow(input_size, -0.5), size=(input_size, hidden_size))  # 入力->隠れ層の重み
