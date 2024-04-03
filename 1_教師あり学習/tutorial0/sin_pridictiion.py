@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import datetime
 
 #グラフの設定
 plt.rcParams['text.usetex'] = False
@@ -27,33 +28,37 @@ plt.rcParams["figure.dpi"] = 120  # need at least 300dpi for paper
 plt.rcParams["figure.autolayout"] = True
 
 #出力の保存先の作成
+file_name = datetime.datetime.now().strftime('%Y_%m_%d'+'/%m_%d_%H_%M_%S')
 folder_name = os.path.splitext(os.path.basename(__file__))[0]#実行しているファイルの名前
 folder_dir = os.path.dirname(os.path.abspath(__file__))#実行しているファイルのパス（どこにあるか）
 # dr = folder_name+"/results" #+'/'+file_name
-dr = folder_dir + "/"+ folder_name + "_results"
+dr = folder_dir + "/"+ folder_name + "_results" +"/" + file_name
 os.makedirs(dr, exist_ok=True)#ファイルを作成
 
 # 訓練データ作成
 x_train = np.linspace(-2*np.pi, 2*np.pi, 100).reshape(-1, 1)  # 入力値を(100, 1)の形状に変更
 y_train = np.sin(x_train)  # 出力値(sin(x))
-x_test = np.linspace(-2*np.pi, 2*np.pi, 99).reshape(-1,1)
+# テストデータ作成
+x_test = np.linspace(-2*np.pi, 2*np.pi, 101).reshape(-1,1) #学習データx_trainとは異なる値をテストデータとして定める
+y_test = np.sin(x_test)
 
 # ネットワーク構造の設定
 input_size = 1  # 入力層のノード数(=1次元のxの値)
 hidden_size = 10  # 隠れ層のノード数
-output_size = 1  # 出力層のノード数(=sin(x)の値)
+output_size = 1  # 出力層のノード数(=sin(x)の予測値)
 
 # 重み行列とバイアスの初期化
-W1 = np.random.randn(input_size, hidden_size)  # 入力->隠れ層の重み
+# W1 = np.random.randn(input_size, hidden_size)#均等な確率で決める場合．
+W1 = np.random.normal(0, pow(input_size, -0.5), size=(input_size, hidden_size))  # 入力->隠れ層の重み
 b1 = np.zeros(hidden_size)  # 隠れ層のバイアス
-W2 = np.random.randn(hidden_size, output_size)  # 隠れ->出力層の重み  
+W2 = np.random.normal(0, pow(hidden_size, -0.5), size=(hidden_size, output_size))  # 隠れ->出力層の重み  
 b2 = np.zeros(output_size)  # 出力層のバイアス
 
 # 活性化関数(シグモイド関数)
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-# 前向き伝搬
+# 順伝搬
 def forward(x):
     global a1
     z1 = np.dot(x, W1) + b1  # 入力層->隠れ層
@@ -83,9 +88,9 @@ def backprop(x, y_true):
     
     return grad_W1, grad_b1, grad_W2, grad_b2
 
-# 確率的勾配降下法による重み・バイアスの更新
+# 勾配降下法による重み・バイアスの更新
 learning_rate = 0.01
-EPOCHS = 50000
+EPOCHS = 100000
 for epoch in range(EPOCHS):
     grad_W1, grad_b1, grad_W2, grad_b2 = backprop(x_train, y_train)
     W1 -= learning_rate * grad_W1
@@ -93,17 +98,18 @@ for epoch in range(EPOCHS):
     W2 -= learning_rate * grad_W2
     b2 -= learning_rate * grad_b2
     
-    # 損失の表示
+    # 現時点での評価
     if epoch % (EPOCHS//10) == 0 or epoch == EPOCHS-1:
-        y_pred = forward(x_train)
-        loss_val = loss(y_pred, y_train)
+        y_pred = forward(x_test)
+        loss_val = loss(y_pred, y_test)
         print(f'Epoch {epoch}, Loss: {loss_val:.4f}')
         
-# 予測値の計算とプロット
-        y_pred = forward(x_test)
+        # プロット
         fig = plt.figure()
-        plt.plot(x_train, y_train, label='True')
+        plt.plot(x_test, y_test, label='True')
         plt.plot(x_test, y_pred, label='Predicted')
+        plt.xlabel("x")
+        plt.ylabel("y")
         plt.legend(fontsize=14, loc="upper right")
         fig.savefig(dr+f"/epoch{epoch}_sin_pridict.png") 
         plt.close()      
