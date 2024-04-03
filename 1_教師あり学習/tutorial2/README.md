@@ -42,6 +42,7 @@ class Net(nn.Module):
 nll_lossとは，参考資料にあるように，出力層のlog_softmaxを用いると交差エントロピー誤差と同様の損失関数となります．
 
 ## 学習結果
+学習の過程とそのプロットを以下に示す．プロットはAccuracyを左図，lossを右図とする．これらより，文字認識の精度は最大で99.1％程度となったことが分かる．一方，Accuracy，lossの値はどちらも不安定な変化となっていることが分かる．
 ```python
 Training log: 1 epoch (60000 / 60000). Loss: 0.037224993109703064%
 Test loss (avg): 0.04151938211917877, Accuracy: 0.9863
@@ -70,6 +71,7 @@ Test loss (avg): 0.040668908001482484, Accuracy: 0.9902
   <img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/188c3906-ed8b-461f-a546-2a4090caefc0" width="50%"><img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/f7646162-b6de-4acc-85f0-77b95db6ae9a" width="50%">
 </p>
 
+次に，scheduler1とscheduler1.step()を用いることにとって，毎epochの最後に学習率を0.5倍にして学習を行った．下図より，学習率を一定にした場合と比べて安定な学習が行えたことが分かる．
 
 ```python
 Training log: 1 epoch (60000 / 60000). Loss: 0.05678172409534454%%
