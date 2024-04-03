@@ -8,7 +8,7 @@
 
 ## プログラムの説明
 
-tutorial1との違いはニューラルネットワークの構造のみなので，そこだけ説明します．
+tutorial1との違いはニューラルネットワークの構造と損失関数のnlllossのみなので，そこだけ説明します．
 
 ニューラルネットワークの構造としては，２層の畳み込みニューラルネットワークと２層の全結合ニューラルネットワークで構成されている．
 
@@ -39,5 +39,35 @@ class Net(nn.Module):
         return f.log_softmax(x, dim=1)
 ```
 
+nll_lossとは，参考資料にあるように，出力層のlog_softmaxを用いると交差エントロピー誤差と同様の損失関数となります．
+
+## 学習結果
+
+
+```python
+Training log: 1 epoch (60000 / 60000). Loss: 0.05678172409534454%%
+Test loss (avg): 0.05794725885391235, Accuracy: 0.9812
+Training log: 2 epoch (60000 / 60000). Loss: 0.02136416919529438%%%
+Test loss (avg): 0.034433253765106205, Accuracy: 0.9874
+Training log: 3 epoch (60000 / 60000). Loss: 0.006577419117093086%%
+Test loss (avg): 0.029183958357572554, Accuracy: 0.9898
+Training log: 4 epoch (60000 / 60000). Loss: 0.004205705597996712%%
+Test loss (avg): 0.02749570277929306, Accuracy: 0.991
+Training log: 5 epoch (60000 / 60000). Loss: 0.0014781500212848186%
+Test loss (avg): 0.02610298503637314, Accuracy: 0.991
+Training log: 6 epoch (60000 / 60000). Loss: 0.003578977659344673%%%
+Test loss (avg): 0.02527144007384777, Accuracy: 0.9918
+Training log: 7 epoch (60000 / 60000). Loss: 0.0023889292497187853%
+Test loss (avg): 0.025273167470097543, Accuracy: 0.9917
+Training log: 8 epoch (60000 / 60000). Loss: 0.002778843278065324%%%
+Test loss (avg): 0.025554137930274008, Accuracy: 0.9914
+Training log: 9 epoch (60000 / 60000). Loss: 0.0032909789588302374%%
+Test loss (avg): 0.025495155468210576, Accuracy: 0.992
+Training log: 10 epoch (60000 / 60000). Loss: 0.0006302946130745113%%
+Test loss (avg): 0.02545464370548725, Accuracy: 0.992
+```
+
 # 参考資料
 [CNNの基本](https://zero2one.jp/learningblog/cnn-for-beginners/)
+
+[nlllossとは](https://qiita.com/y629/items/1369ab6e56b93d39e043)
