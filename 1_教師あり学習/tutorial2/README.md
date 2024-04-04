@@ -105,4 +105,5 @@ Test loss (avg): 0.02545464370548725, Accuracy: 0.992
 
 [nlllossとは](https://qiita.com/y629/items/1369ab6e56b93d39e043)
 
+各クラスの正解率など
 [ほかにできることまとめ](https://qiita.com/Uta10969/items/007e176ee20f0b4eafb1#233-%E3%82%AF%E3%83%A9%E3%82%B9%E5%88%86%E9%A1%9E%E6%AF%8E%E3%81%AE%E6%AD%A3%E8%A7%A3%E7%8E%87%E3%81%AE%E7%AE%97%E5%87%BA)
