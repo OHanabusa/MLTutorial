@@ -25,18 +25,20 @@
 各ノード $h_i^{(l)}$ は，隠れ層の初めの層を1，出力層を $L$ とする層番号 $l(=1,2,...,L)$ ，第 $l-1$ 層の $i$ 番目のノードと第 $l$ 層の $j$ 番目のノードを結ぶ重み行列 $W_{ij}^{(l)}$ ，第 $l$ 層の $i$ 番目のノードのバイアス項 $b_i^{(l)}$ ，第 $l$ 層の活性化関数 $f^{(l)}$ (ReLU, tanhなど)を用いて，以下のように定義される．
 
 $$
-    h_i^{(l)} &= f^{(l)} I_i^{(l)} \tag{1} \\
-    I_i^{(l)} &= \sum_j W_{ij}^{(l)} h_j^{(l-1)} + b_i^{(l)} \tag{2}
+\begin{align}
+  (1)&&h_i^{(l)} &= f^{(l)} I_i^{(l)}\\
+  (2)&&I_i^{(l)} &= \sum_j W_{ij}^{(l)} h_j^{(l-1)} + b_i^{(l)}
+\end{align}
 $$
 
 したがって，各ノードでは，1つ前の層の出力と重み行列の積の合計にバイアスを加え，活性化関数を通して，各ノードの値が計算される．これを行列形式で表現すると以下のように表される．
 
 $$
 \begin{equation}
-  \boldsymbol h^{(l)} =
+  (3)\quad \boldsymbol h^{(l)} =
   f\left(
   \boldsymbol {W}^{(l)} \cdot \boldsymbol {h}^{(l-1)} + \boldsymbol {b}^{(l)}
-  \right) \tag{3}
+  \right)
 \end{equation}
 $$
 
@@ -85,17 +87,17 @@ $$
 
 $$
 \begin{align}
-  \frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
+  (4)&&\frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
           \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
   \frac {\partial E}{\partial \boldsymbol b^{(l+1)}} &(\rm otherwise)
-      \end{cases}\tag{4} \\
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} 
+      \end{cases}\\
+  (5)&&\frac {\partial E}{\partial \boldsymbol b^{(l)}} 
       &= 
   \frac {\partial E}{\partial \boldsymbol h^{(l)}} \circ 
-  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5} \\
-  \frac {\partial E}{\partial \boldsymbol W^{(l)}}
+  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}} \\
+  (6)&&\frac {\partial E}{\partial \boldsymbol W^{(l)}}
       &=  \boldsymbol h ^{(l-1)} \cdot \left(
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{6} 
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T
 \end{align}
 $$
 
@@ -105,8 +107,8 @@ $$
 
 $$
 \begin{align}
-  \boldsymbol {b}^{(l)} &\leftarrow \boldsymbol {b}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {b}^{(l)}} \tag{6}\\
-  \boldsymbol {W}^{(l)} &\leftarrow \boldsymbol {W}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {W}^{(l)}} \tag{7}
+  (6)&&\boldsymbol {b}^{(l)} &\leftarrow \boldsymbol {b}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {b}^{(l)}} \\
+  (7)&&\boldsymbol {W}^{(l)} &\leftarrow \boldsymbol {W}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {W}^{(l)}} 
 \end{align}
 $$
 
