@@ -26,8 +26,8 @@
 
 $$
 \begin{align}
-    h_i^{(l)} &= f^{(l)}I_i^{(l)} \tag{1} \\
-    I_i^{(l)} &= \sum_j W_{ij}^{(l)} h_j^{(l-1)}+b_i^{(l)} \tag{2}
+  (1)&&h_i^{(l)} &= f^{(l)} I_i^{(l)}\\
+  (2)&&I_i^{(l)} &= \sum_j W_{ij}^{(l)} h_j^{(l-1)} + b_i^{(l)}
 \end{align}
 $$
 
@@ -35,10 +35,10 @@ $$
 
 $$
 \begin{equation}
-  \boldsymbol h^{(l)} =
+  (3)\quad \boldsymbol h^{(l)} =
   f\left(
   \boldsymbol {W}^{(l)} \cdot \boldsymbol {h}^{(l-1)} + \boldsymbol {b}^{(l)}
-  \right) \tag{3}
+  \right)
 \end{equation}
 $$
 
@@ -87,17 +87,17 @@ $$
 
 $$
 \begin{align}
-  \frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
+  (4)&&\frac{\partial E}{\partial \boldsymbol h^{(l)}} &=  \begin{cases} \frac{\partial E}{\partial \boldsymbol h^{(L)}} & ({\rm{if}} \quad l = L)\\
           \left(\boldsymbol W ^{(l+1)}\right)^T \cdot 
   \frac {\partial E}{\partial \boldsymbol b^{(l+1)}} &(\rm otherwise)
-      \end{cases}\tag{4} \\
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} 
+      \end{cases}\\
+  (5)&&\frac {\partial E}{\partial \boldsymbol b^{(l)}} 
       &= 
   \frac {\partial E}{\partial \boldsymbol h^{(l)}} \circ 
-  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}}\tag{5} \\
-  \frac {\partial E}{\partial \boldsymbol W^{(l)}}
+  \frac {\partial \boldsymbol h^{(l)}}{\partial \boldsymbol I^{(l)}} \\
+  (6)&&\frac {\partial E}{\partial \boldsymbol W^{(l)}}
       &=  \boldsymbol h ^{(l-1)} \cdot \left(
-  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T\tag{6} 
+  \frac {\partial E}{\partial \boldsymbol b^{(l)}} \right)^T
 \end{align}
 $$
 
@@ -107,15 +107,15 @@ $$
 
 $$
 \begin{align}
-  \boldsymbol {b}^{(l)} &\leftarrow \boldsymbol {b}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {b}^{(l)}} \tag{6}\\
-  \boldsymbol {W}^{(l)} &\leftarrow \boldsymbol {W}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {W}^{(l)}} \tag{7}
+  (6)&&\boldsymbol {b}^{(l)} &\leftarrow \boldsymbol {b}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {b}^{(l)}} \\
+  (7)&&\boldsymbol {W}^{(l)} &\leftarrow \boldsymbol {W}^{(l)} - \eta \frac{\partial E}{\partial \boldsymbol {W}^{(l)}} 
 \end{align}
 $$
 
 ここで， $\eta$ は学習率(learning rate)と呼ばれる定数であり，更新における変化量を制御している．この更新式によって，学習パラメータ $\boldsymbol W^{(l)}$ ， $\boldsymbol b^{(l)}$ を損失関数 $E$ が最小化する方向に更新される．また，この更新式は最急降下法(SGD)と呼ばれ，最も単純な更新式である．これ以外にも前回の変化量を考慮したものや，変化に慣性力を加えたものなどたくさんあるのでいろいろ試してみてください．特に優秀な更新式としてAdamと呼ばれるものがあります．
 
 ## プログラムを動かしてみよう
-次は， __tutorial0__ に進んでプログラムを実際に動かして理解しましょう．
+次は， [__tutorial0__](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/tree/6fa0124831dee20f2b9331f744e98c67a299aefe/1_%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92/tutorial0) に進んでプログラムを実際に動かして理解しましょう．
 
 ## 補足資料
 [英の卒論](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/blob/33ce72255cbbb695ec96588a9e1aa9ab11727390/%E5%8D%92%E6%A5%AD%E8%AB%96%E6%96%87_%E8%8B%B1%E9%9F%B3.pdf)
