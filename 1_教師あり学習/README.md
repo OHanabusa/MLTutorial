@@ -26,8 +26,8 @@
 
 $$
 \begin{align}
-    h_i^{(l)} &= f^{(l)}I_i^{(l)} \tag{1} \\
-    I_i^{(l)} &= \sum_j W_{ij}^{(l)} h_j^{(l-1)}+b_i^{(l)} \tag{2}
+    h_i^{(l)} &= f^{(l)} I_i^{(l)} \tag{1} \\
+    I_i^{(l)} &= \sum_j W_{ij}^{(l)} h_j^{(l-1)} + b_i^{(l)} \tag{2}
 \end{align}
 $$
 
