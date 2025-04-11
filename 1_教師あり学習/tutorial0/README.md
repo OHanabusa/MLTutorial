@@ -183,7 +183,7 @@ $$
 \delta_1 = \left( \delta_2 \cdot W_2^\top \right) \odot \sigma'(z_1)
 $$
 
-ここで $\odot$ は要素ごとの積（Hadamard積）であり、$\sigma(z_1)$ がシグモイド関数であることから：
+ここで $\odot$ は要素ごとの積（Hadamard積）であり、 $\sigma(z_1)$  がシグモイド関数であることから：
 
 $$
 \sigma'(z_1) = \sigma(z_1)(1 - \sigma(z_1)) = a_1(1 - a_1)
