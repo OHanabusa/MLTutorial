@@ -156,16 +156,16 @@ $$
 出力 $\hat{y} = z_2 = W_2 a_1 + b_2$ より，
 
 - 勾配 $\frac{\partial L}{\partial W_2}$ は：
-  
-  $$
-  \frac{\partial L}{\partial W_2} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial W_2} = (\hat{y} - t) \cdot a_1^\top
-  $$
+
+$$
+\frac{\partial L}{\partial W_2} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial W_2} = (\hat{y} - t) \cdot a_1^\top
+$$
 
 - 勾配 $\frac{\partial L}{\partial b_2}$ は：
 
-  $$
-  \frac{\partial L}{\partial b_2} = \hat{y} - t
-  $$
+$$
+\frac{\partial L}{\partial b_2} = \hat{y} - t
+$$
 
 ---
 
