@@ -47,7 +47,7 @@ b2 = np.zeros(1)
 ここでは以下のようなネットワーク構造です：
 
 - **入力層**: $x \in \mathbb{R}^1$
-- **隠れ層**: $a_1 = \sigma(W_1 x + b_1)$，$W_1 \in \mathbb{R}^{1 \times 10}$
+- **隠れ層**: $a_1 = \sigma(W_1 x + b_1)，W_1 \in \mathbb{R}^{1 \times 10}$
 - **出力層**: $\hat{y} = W_2 a_1 + b_2$，$W_2 \in \mathbb{R}^{10 \times 1}$
 
 活性化関数 $\sigma(x)$ はシグモイド関数：
