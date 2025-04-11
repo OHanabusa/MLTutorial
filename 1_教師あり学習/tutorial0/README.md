@@ -199,15 +199,15 @@ $$
 
 - 勾配 $\frac{\partial L}{\partial W_1}$：
 
-  $$
-  \frac{\partial L}{\partial W_1} = x^\top \cdot \delta_1
-  $$
+$$
+\frac{\partial L}{\partial W_1} = x^\top \cdot \delta_1
+$$
 
 - 勾配 $\frac{\partial L}{\partial b_1}$：
 
-  $$
-  \frac{\partial L}{\partial b_1} = \delta_1
-  $$
+$$
+\frac{\partial L}{\partial b_1} = \delta_1
+$$
 
 ---
 
