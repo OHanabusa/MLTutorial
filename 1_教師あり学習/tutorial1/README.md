@@ -4,29 +4,52 @@
 ## プログラムの準備
 `handwriting.py`をダウンロードし，実行して下さい．以下の説明を比較しながら理解してください．
 
-## プロクラムの説明
-MNISTデータベースには、下に示したような手書きの数字（と対応する正解ラベル）が訓練データとして6万個、テストデータとして1万個格納されています。この膨大な数のデータを使用して、ニューラルネットワークを用いた手書き数字の認識をしてみようというのが目標です。
+以下に、説明の構造と文の流れを整理して、より読みやすく・理解しやすくしたバージョンを提示します。小見出しを追加し、各コードブロックの前後に**「なぜその処理をするのか」**を明確にしています。
 
-![image](https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/09e2a68a-fbde-4237-ac96-708b36455c59)
+---
 
-まず，下のコードでは，訓練データ(trainloader)とテストデータ(testloader)に分けて定義します．
-手書き文字の画像は28×28のピクセルデータがそれぞれ0～255のグレースケールの値で保存されているため，読み込む際に`transform`を用いて0～１に正規化します．
+## 概要
+
+このチュートリアルでは、**MNISTデータセット**を用いて、**手書き数字を分類するニューラルネットワーク**をPyTorchで構築・学習させます。
+
+MNISTには以下のような28×28ピクセルの手書き数字画像が含まれており、**訓練データ6万件・テストデータ1万件**で構成されています。
+
+<div align="center">
+<img src="https://github.com/SolidMechanicsGroup/ML_Tutorial_2024/assets/130419605/09e2a68a-fbde-4237-ac96-708b36455c59" width="60%">
+</div>
+
+---
+
+### 1. データセットの準備と前処理
+
+まず、画像データを**テンソル形式に変換**し、ピクセル値を[0, 1]の範囲に正規化します。
 
 ```python
 BATCH_SIZE = 20
-transform = transforms.Compose([transforms.ToTensor(),
-                                transforms.Normalize((0.0,), (1.0,))])
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.0,), (1.0,))
+])
 
-train_set = torchvision.datasets.MNIST(root='./', train=True,transform=transform, download=True)
+train_set = torchvision.datasets.MNIST(root='./', train=True, transform=transform, download=True)
 trainloader = torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)
 
-test_set = torchvision.datasets.MNIST(root='./', train=False,transform=transform, download=True)
+test_set = torchvision.datasets.MNIST(root='./', train=False, transform=transform, download=True)
 testloader = torch.utils.data.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)
 ```
 
-次は，ニューラルネットワークの層の数とそれぞれの活性化関数の定義をしています．ここではpytorchという機械学習のモジュールを使用しています．ほかにもTensorflowやJaxなどがあるので，好きなものを利用してください．pytorchのコードの引数などの詳細は[pytorch公式](https://pytorch.org/docs/stable/generated/torch.nn.functional.linear.html#torch.nn.functional.linear)で調べてください．
+- `transforms.Normalize((0.0,), (1.0,))` によって単純な正規化（割るだけ）を実行。
+- `shuffle=True` により、毎エポック異なる順序で訓練データを使用。
 
-ニューラルネットワークの構造は入力層，１つの隠れ層，出力層のノード数がそれぞれ`INPUT_FEATURES`, `HIDDEN`, `OUTPUT_FEATURES`個となっている．今回は入力層のノードを28×28，出力層を10個とする．出力層のノードはそれぞれ0～9の数字の分類に対応している．また，隠れ層の層の数やノード数は任意に設定できます．活性化関数は隠れ層のReLU関数のみである．出力層の活性化関数としてクラス分類で使われるsoftmaxを使ってもよい．
+---
+
+### 2. ニューラルネットワークの定義
+
+#### ネットワーク構造
+
+- **入力層**: 784ノード（28×28の画像を1次元に）
+- **隠れ層**: 任意のノード数（例：100）
+- **出力層**: 10ノード（数字0〜9の分類）
 
 ```python
 class Net(torch.nn.Module):
@@ -34,62 +57,99 @@ class Net(torch.nn.Module):
         super().__init__()
         self.fc1 = torch.nn.Linear(INPUT_FEATURES, HIDDEN)
         self.fc2 = torch.nn.Linear(HIDDEN, OUTPUT_FEATURES)
-        # self.softmax = torch.nn.Softmax(dim=1)
+
     def forward(self, x):
         x = self.fc1(x)
-        x = torch.nn.functional.relu(x)
+        x = torch.nn.functional.relu(x)  # 活性化関数
         x = self.fc2(x)
-        # x = self.softmax(x)
-        return x
+        return x  # ソフトマックスはCrossEntropyLossに含まれる
 ```
 
-損失関数は交差エントロピー関数，最適化法は学習率lr=0.001のSGDとしていますが他のも試してみてください．最適化法によって学習の成績がかなり変わります．
+> ⚠️ 出力層には`softmax`を明示的に入れていませんが、`CrossEntropyLoss`は内部で自動的にsoftmaxを使ってくれます。
+
+---
+
+### 3. 損失関数と最適化法の設定
 
 ```python
-#損失関数の設定
-criterion = torch.nn.CrossEntropyLoss()
-#最適化法の設定
-#通常のSGD
-optimizer = optim.SGD(net.parameters(), lr=0.001)
+criterion = torch.nn.CrossEntropyLoss()  # 交差エントロピー損失
+optimizer = optim.SGD(net.parameters(), lr=0.001)  # 確率的勾配降下法（SGD）
 ```
 
-以上がデータとニューラルネットワークの設定で，以降は学習になります．
+> 他にも`Adam`, `RMSprop`などの最適化手法があり、学習の進み具合が大きく異なります。
 
-ここでは，訓練データを使って学習を行っています．`outputs`がニューラルネットワークの出力で，`loss`が損失関数の計算，`loss.backward()`で勾配の計算，`optimizer.step()`でニューラルネットワークの更新を行っています．これは，教師あり学習の理論で説明した勾配の計算とニューラルネットワークの更新を自動でやってくれています．
+---
+
+### 4. 学習ループ
+
+#### 学習ステップ（順伝播・損失計算・逆伝播・パラメータ更新）
 
 ```python
-EPOCHS = 10#データセットを何周するか
+EPOCHS = 10
 for epoch in range(1, EPOCHS + 1):
-    #学習フェーズ
-    for count, item in enumerate(trainloader, 1):
-        inputs, labels = item
-        inputs = inputs.reshape(-1, 28 * 28)#28*28の２次元配列を１次元の配列に変換
+    for count, (inputs, labels) in enumerate(trainloader, 1):
+        inputs = inputs.reshape(-1, 28 * 28)  # (batch_size, 784) に変形
         optimizer.zero_grad()
-        outputs = net(inputs)#Netクラスのforward関数が使われる
+        outputs = net(inputs)
         loss = criterion(outputs, labels)
-        #ニューラルネットワークの更新
         loss.backward()
         optimizer.step()
 ```
 
-次は，１セットの訓練データが学習し終わったタイミングでテストデータを使って現在のニューラルネットワークの成績を確認します．
+- `loss.backward()`：自動的に各パラメータの勾配を計算。
+- `optimizer.step()`：その勾配に基づいてパラメータを更新。
 
-ここでは，ニューラルネットワークの更新は行わないため，`torch.no_grad()`で勾配計算を行わないモードに変更しています．また，`predicted`でニューラルネットワークが予測した分類を取得し，`correct += (predicted == labels).sum().item()`で正解数を数えています．
+---
+
+### 5. テストによる性能評価
+
+#### 学習後のモデルでテストデータの正解率を計算
 
 ```python
-    with torch.no_grad():#勾配が計算されないモード
-        for data in testloader:
-            inputs, labels = data
+    with torch.no_grad():  # 評価中は勾配を計算しない
+        for inputs, labels in testloader:
             inputs = inputs.reshape(-1, 28 * 28)
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             test_loss += loss.item()
-            _, predicted = torch.max(outputs, 1)#出力層の最大値を示すものをニューラルネットワークの予測した分類とする．
-            total += len(outputs)
+            _, predicted = torch.max(outputs, 1)  # 出力の最大値を予測ラベルとする
+            total += labels.size(0)
             correct += (predicted == labels).sum().item()
 ```
 
-以上の学習と評価を`EPOCHS`回繰り返し行い，その学習の推移をグラフにプロットします．
+- `torch.max(outputs, 1)` は出力テンソルの**各行で最大のインデックス（＝分類結果）**を返します。
+- `correct / total` で正解率（accuracy）を計算できます。
+
+---
+
+### 6. 学習の可視化（オプション）
+
+エポックごとの正解率や損失を保存しておけば、次のような学習曲線が描けます：
+
+```python
+plt.plot(train_loss_list, label='Train Loss')
+plt.plot(test_loss_list, label='Test Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+```
+
+---
+
+### まとめ
+
+このチュートリアルでは、以下の流れで手書き数字認識を体験しました：
+
+1. **データ読み込みと前処理**
+2. **ニューラルネットワークの構築**
+3. **損失関数・最適化手法の設定**
+4. **学習ループの実行**
+5. **テストデータによる評価**
+
+> ✨ **発展課題**：隠れ層を2層にしたり、ドロップアウト・BatchNormを追加して精度改善にチャレンジしてみてください！
+
+---
 
 以下に，最適化法Adam，EPOCHS=30としたときの結果を示す．
 
